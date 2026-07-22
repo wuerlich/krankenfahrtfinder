@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Krankenfahrtfinder — Krankenfahrten, Rollstuhltaxi und Liegendtransport in Ihrer Nähe finden</title>
+<meta name="description" content="Krankenfahrt, Rollstuhltaxi oder Liegendtransport gesucht? Krankenfahrtfinder zeigt Fahrdienste mit Direktabrechnung, Rollstuhl- und Liegendtransport in Niedersachsen — kostenlos, ohne Anmeldung.">
+<link rel="canonical" href="https://krankenfahrtfinder.de/">
+<link rel="stylesheet" href="styles.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Krankenfahrtfinder", "url": "https://krankenfahrtfinder.de/", "description": "Krankenfahrten, Rollstuhltaxi und Liegendtransport in Ihrer Nähe finden"}</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="site-logo" href="./">🚕 Krankenfahrtfinder</a>
+    <nav class="site-nav" aria-label="Hauptnavigation">
+      <a href="./">Startseite</a>
+      <a href="#ratgeber-teaser">Ratgeber</a>
+      <a href="ueber-uns/">Über uns</a>
+      <a href="eintrag-melden/">Eintrag melden</a>
+    </nav>
+  </div>
+</header>
+<main class="site-main">
+<div class="container">
+
+<section class="hero">
+  <h1>Krankenfahrt, Rollstuhltaxi oder Liegendtransport — hier finden Sie den
+  passenden Fahrdienst in Ihrer Nähe.</h1>
+  <p class="hero__hinweis-region">Start-Region Niedersachsen — weitere Bundesländer folgen.</p>
+</section>
+
+<section class="suche-sektion" id="suche" aria-label="Fahrdienst suchen">
+<div class="suche-box">
+  <label for="suche-eingabe">Ort oder Postleitzahl</label>
+  <div class="suche-eingabe-zeile">
+    <input type="text" id="suche-eingabe" placeholder="z. B. Oldenburg oder 26135" autocomplete="off">
+    <button type="button" id="suche-button" class="btn">Suchen</button>
+  </div>
+  <div class="chips" role="group" aria-label="Nach Leistung filtern">
+    <input type="checkbox" id="chip-krankenfahrten" class="chip-checkbox" value="krankenfahrten"><label for="chip-krankenfahrten" class="chip">Krankenfahrten</label><input type="checkbox" id="chip-direktabrechnung_kk" class="chip-checkbox" value="direktabrechnung_kk"><label for="chip-direktabrechnung_kk" class="chip">Direktabrechnung mit der Kasse</label><input type="checkbox" id="chip-rollstuhl" class="chip-checkbox" value="rollstuhl"><label for="chip-rollstuhl" class="chip">Rollstuhl</label><input type="checkbox" id="chip-tragestuhl" class="chip-checkbox" value="tragestuhl"><label for="chip-tragestuhl" class="chip">Tragestuhl</label><input type="checkbox" id="chip-liegend" class="chip-checkbox" value="liegend"><label for="chip-liegend" class="chip">Liegend</label><input type="checkbox" id="chip-rund_um_die_uhr" class="chip-checkbox" value="rund_um_die_uhr"><label for="chip-rund_um_die_uhr" class="chip">24 Stunden</label>
+  </div>
+</div>
+<div id="suchergebnisse" class="suchergebnisse" aria-live="polite" hidden></div>
+<div id="alle-orte">
+  <h2>Alle Orte</h2>
+  <ul class="orte-liste">
+    <li><a href="ort/braunschweig/">Braunschweig</a> <span class="orte-liste__anzahl">(2)</span></li><li><a href="ort/cuxhaven/">Cuxhaven</a> <span class="orte-liste__anzahl">(3)</span></li><li><a href="ort/delmenhorst/">Delmenhorst</a> <span class="orte-liste__anzahl">(5)</span></li><li><a href="ort/goslar/">Goslar</a> <span class="orte-liste__anzahl">(3)</span></li><li><a href="ort/goettingen/">Göttingen</a> <span class="orte-liste__anzahl">(1)</span></li><li><a href="ort/hannover/">Hannover</a> <span class="orte-liste__anzahl">(2)</span></li><li><a href="ort/lingen-ems/">Lingen (Ems)</a> <span class="orte-liste__anzahl">(1)</span></li><li><a href="ort/nordhorn/">Nordhorn</a> <span class="orte-liste__anzahl">(1)</span></li><li><a href="ort/oldenburg/">Oldenburg</a> <span class="orte-liste__anzahl">(3)</span></li><li><a href="ort/osnabrueck/">Osnabrück</a> <span class="orte-liste__anzahl">(3)</span></li><li><a href="ort/papenburg/">Papenburg</a> <span class="orte-liste__anzahl">(1)</span></li><li><a href="ort/seevetal/">Seevetal</a> <span class="orte-liste__anzahl">(2)</span></li><li><a href="ort/wilhelmshaven/">Wilhelmshaven</a> <span class="orte-liste__anzahl">(2)</span></li><li><a href="ort/wolfsburg/">Wolfsburg</a> <span class="orte-liste__anzahl">(3)</span></li>
+  </ul>
+</div>
+</section>
+
+<section class="schritte" aria-label="So funktioniert es">
+  <h2>So funktioniert's</h2>
+  <ol>
+    <li><span class="schritt__nummer">1</span> Ort oder Postleitzahl eingeben — oder
+    direkt einen Ort aus der Liste wählen.</li>
+    <li><span class="schritt__nummer">2</span> Fahrdienst mit den passenden Leistungen
+    finden — z. B. Rollstuhl, Direktabrechnung mit der Kasse oder 24 Stunden erreichbar.</li>
+    <li><span class="schritt__nummer">3</span> Direkt anrufen oder die Website des
+    Anbieters besuchen — ohne Anmeldung, ohne Umwege.</li>
+  </ol>
+</section>
+
+<section class="ratgeber-teaser" id="ratgeber-teaser" aria-label="Ratgeber">
+  <h2>Ratgeber: Kostenübernahme, Verordnung und Zuzahlung verständlich erklärt</h2>
+  <div class="ratgeber-karten">
+    <a class="ratgeber-karte" href="ratgeber/muster-4-verordnung-krankenbefoerderung/">
+  <h3>Die Verordnung einer Krankenbeförderung (Muster 4): So bekommen Sie sie vom Arzt</h3>
+  <p>Was im Muster 4 steht, wer es ausstellt, wann Sie es brauchen und wie Sie es beim Fahrdienst oder bei der Krankenkasse richtig einreichen.</p>
+</a><a class="ratgeber-karte" href="ratgeber/rollstuhl-tragestuhl-liegend-fahrdienst/">
+  <h3>Rollstuhl, Tragestuhl oder liegend: Welcher Fahrdienst passt zu wem?</h3>
+  <p>Der Unterschied zwischen Rollstuhltransport, Tragestuhl und Liegendtransport – und wie Sie erkennen, welche Beförderungsart auf Ihre Verordnung gehört.</p>
+</a><a class="ratgeber-karte" href="ratgeber/wer-zahlt-die-krankenfahrt/">
+  <h3>Wer zahlt die Krankenfahrt? Kostenübernahme einfach erklärt</h3>
+  <p>Wann die gesetzliche Krankenkasse Fahrkosten zu einer ambulanten Behandlung übernimmt, welche Ausnahmen ohne Antrag gelten und was Sie selbst zahlen.</p>
+</a><a class="ratgeber-karte" href="ratgeber/zuzahlung-befreiung-krankenfahrten/">
+  <h3>Zuzahlung und Befreiung bei Krankenfahrten</h3>
+  <p>10 Prozent, mindestens 5 und höchstens 10 Euro je Fahrt – wie sich die gesetzliche Zuzahlung berechnet, was die Belastungsgrenze bedeutet und wie Sie eine Befreiung beantragen.</p>
+</a>
+  </div>
+</section>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="container footer__inner">
+    <p class="footer__claim">Krankenfahrtfinder ist ein unabhängiges Verzeichnis für Krankenfahrten,
+    Rollstuhltaxi und Liegendtransport — Start-Region Niedersachsen, weitere Bundesländer folgen.</p>
+    <nav class="footer__legal" aria-label="Rechtliches">
+      <a href="ueber-uns/">Über uns</a>
+      <a href="eintrag-melden/">Eintrag melden</a>
+      <a href="impressum/">Impressum</a>
+      <a href="datenschutz/">Datenschutz</a>
+    </nav>
+    <p class="footer__org">HD City Taxi Oldenburg GmbH · Rudolf-Diesel-Str. 24-28, 26135 Oldenburg ·
+    <a href="tel:+4944115815">0441 15815</a></p>
+  </div>
+</footer>
+<details class="feedback-widget">
+  <summary>💬 Feedback</summary>
+  <div class="feedback-panel">
+    <p>Wir lesen jedes Feedback und bauen die Seite danach weiter.</p>
+    <a class="btn btn--klein" href="mailto:feedback@krankenfahrtfinder.de?subject=Feedback%20Krankenfahrtfinder">Feedback per E-Mail senden</a>
+  </div>
+</details>
+<script src="app.js" defer></script>
+</body>
+</html>

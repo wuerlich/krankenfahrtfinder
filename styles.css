@@ -1,0 +1,457 @@
+/* Krankenfahrtfinder — eine einzige CSS-Datei, mobil-first.
+   Zielgruppe: teils ältere Menschen -> große Schrift, hohe Kontraste,
+   große Klickflächen, ruhige Blau-/Grüntöne, System-Fonts (keine Web-Fonts,
+   keine externen Requests). */
+
+:root {
+  --color-bg: #f4f8f9;
+  --color-surface: #ffffff;
+  --color-text: #16242b;
+  --color-text-muted: #45585f;
+  --color-primary: #0a5f8c;
+  --color-primary-dark: #084a6e;
+  --color-secondary: #1c7a54;
+  --color-border: #d7e3e6;
+  --color-badge-bg: #e6f2ee;
+  --color-badge-text: #0f5132;
+  --color-accent-bg: #eaf4fa;
+  --color-warn-bg: #fff8e8;
+  --color-warn-border: #e3bd5a;
+  --focus-ring: #ff9f1c;
+  --radius: 10px;
+  --max-width: 800px;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+
+img { max-width: 100%; }
+
+a {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+a:hover { color: var(--color-primary-dark); }
+
+:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+h1, h2, h3 {
+  color: var(--color-primary-dark);
+  line-height: 1.25;
+  margin-top: 1.6em;
+  margin-bottom: 0.6em;
+}
+h1 { font-size: 1.85rem; margin-top: 0; }
+h2 { font-size: 1.4rem; }
+h3 { font-size: 1.15rem; }
+
+p { margin: 0.9em 0; }
+
+ul, ol { padding-left: 1.4em; }
+li { margin: 0.4em 0; }
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+/* ── Header / Nav ─────────────────────────────────────────────────────── */
+
+.site-header {
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+.site-header__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding-top: 0.9rem;
+  padding-bottom: 0.9rem;
+}
+.site-logo {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  text-decoration: none;
+}
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.1rem;
+}
+.site-nav a {
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 0.4rem 0.2rem;
+}
+.site-nav a:hover { color: var(--color-primary); text-decoration: underline; }
+
+/* ── Breadcrumb ───────────────────────────────────────────────────────── */
+
+.breadcrumb {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  margin: 1rem 0 0.5rem;
+}
+.breadcrumb a { color: var(--color-text-muted); }
+
+/* ── Main / Footer ────────────────────────────────────────────────────── */
+
+.site-main { padding-bottom: 3rem; }
+
+.site-footer {
+  background: var(--color-primary-dark);
+  color: #eaf3f8;
+  margin-top: 3rem;
+}
+.footer__inner { padding: 2rem 1.25rem; }
+.footer__claim { color: #eaf3f8; max-width: 60ch; }
+.footer__legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.2rem;
+  margin: 1rem 0;
+}
+.footer__legal a, .footer__org a { color: #ffffff; }
+.footer__org { color: #cfe3ee; font-size: 0.95rem; }
+
+/* ── Buttons / Chips ──────────────────────────────────────────────────── */
+
+.btn {
+  display: inline-block;
+  background: var(--color-primary);
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.85rem 1.4rem;
+  border-radius: var(--radius);
+  border: none;
+  font-size: 1.05rem;
+  cursor: pointer;
+  min-height: 44px;
+}
+.btn:hover { background: var(--color-primary-dark); color: #fff; }
+.btn--klein { padding: 0.6rem 1rem; font-size: 0.95rem; }
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 1rem 0 0.2rem;
+}
+.chip-checkbox {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.chip {
+  display: inline-block;
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary-dark);
+  background: var(--color-surface);
+  cursor: pointer;
+  font-size: 0.98rem;
+  user-select: none;
+}
+.chip-checkbox:checked + .chip {
+  background: var(--color-primary);
+  color: #ffffff;
+}
+.chip-checkbox:focus-visible + .chip {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* ── Hero / Suche ─────────────────────────────────────────────────────── */
+
+.hero { padding-top: 1.5rem; }
+.hero h1 { font-size: 1.7rem; }
+.hero__hinweis-region {
+  color: var(--color-text-muted);
+  font-size: 0.98rem;
+}
+
+.suche-sektion { margin: 1.5rem 0 2.5rem; }
+
+.suche-box {
+  background: var(--color-accent-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+}
+.suche-box label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.suche-eingabe-zeile {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+#suche-eingabe {
+  flex: 1 1 220px;
+  font-size: 1.1rem;
+  padding: 0.75rem 0.9rem;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius);
+  min-height: 44px;
+}
+#suche-eingabe:focus-visible { border-color: var(--color-primary); }
+
+.suchergebnisse { margin: 1.25rem 0; }
+.suchergebnisse__hinweis {
+  color: var(--color-text-muted);
+}
+
+#alle-orte { margin-top: 1.5rem; }
+.orte-liste {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+}
+@media (min-width: 560px) {
+  .orte-liste { grid-template-columns: 1fr 1fr; }
+}
+.orte-liste li {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 0.7rem 1rem;
+  margin: 0;
+}
+.orte-liste a { text-decoration: none; font-weight: 600; }
+.orte-liste__anzahl { color: var(--color-text-muted); font-size: 0.92rem; }
+
+.hinweis-aufbau {
+  background: var(--color-warn-bg);
+  border: 1px solid var(--color-warn-border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin: 1.5rem 0 2.5rem;
+}
+.hinweis-aufbau h2 { margin-top: 0; }
+
+/* ── Schritte ─────────────────────────────────────────────────────────── */
+
+.schritte { margin: 2.5rem 0; }
+.schritte ol { list-style: none; padding: 0; }
+.schritte li {
+  display: flex;
+  gap: 0.9rem;
+  align-items: flex-start;
+  margin: 1rem 0;
+}
+.schritt__nummer {
+  flex: none;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  background: var(--color-secondary);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+/* ── Ratgeber-Teaser / Karten ─────────────────────────────────────────── */
+
+.ratgeber-teaser { margin: 2.5rem 0; }
+.ratgeber-karten, .melde-karten {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+@media (min-width: 640px) {
+  .ratgeber-karten, .melde-karten { grid-template-columns: 1fr 1fr; }
+}
+.ratgeber-karte {
+  display: block;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.25rem;
+  text-decoration: none;
+  color: var(--color-text);
+}
+.ratgeber-karte:hover { border-color: var(--color-primary); }
+.ratgeber-karte h3 { margin-top: 0; color: var(--color-primary-dark); }
+.ratgeber-karte p { margin-bottom: 0; color: var(--color-text-muted); }
+
+/* ── Betriebe-Karten (Ort-Seite) ──────────────────────────────────────── */
+
+.betriebe-liste {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+.betrieb-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.25rem;
+}
+.betrieb-card h3 { margin-top: 0; margin-bottom: 0.4rem; }
+.betrieb-card h3 a { text-decoration: none; }
+.kontakt-zeile { margin: 0.35rem 0; }
+
+.badges { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.5rem 0; }
+.badge {
+  display: inline-block;
+  background: var(--color-badge-bg);
+  color: var(--color-badge-text);
+  border-radius: 999px;
+  padding: 0.3rem 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.einleitung { color: var(--color-text-muted); }
+.ratgeber-hinweis {
+  background: var(--color-accent-bg);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+}
+
+/* ── Anbieter-Detailseite ─────────────────────────────────────────────── */
+
+.anbieter-detail .kontakt-block {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.25rem;
+  margin: 1rem 0;
+}
+.herkunftshinweis {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  font-style: italic;
+}
+.beanspruchen-kasten {
+  background: var(--color-accent-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  margin: 1.5rem 0;
+}
+.beanspruchen-kasten h2 { margin-top: 0; }
+.ort-zurueck { margin-top: 2rem; }
+
+/* ── Ratgeber-Artikel ─────────────────────────────────────────────────── */
+
+.content-narrow, .artikel { max-width: 68ch; }
+
+.cta-box {
+  background: var(--color-accent-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin: 2.5rem 0 1.5rem;
+  text-align: center;
+}
+.cta-box h2 { margin-top: 0; }
+
+.absender-kasten {
+  border-top: 1px solid var(--color-border);
+  padding-top: 1.25rem;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+.faq-item {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 0.9rem 1.1rem;
+  margin: 0.75rem 0;
+}
+.faq-item summary {
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--color-primary-dark);
+}
+.faq-antwort { margin-top: 0.6rem; }
+.faq-antwort p:first-child { margin-top: 0; }
+.faq-antwort p:last-child { margin-bottom: 0; }
+
+/* ── Melde-Karten (Eintrag melden) ────────────────────────────────────── */
+
+.melde-karte {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+}
+.melde-karte h2 { margin-top: 0; }
+.melde-frist { color: var(--color-text-muted); font-size: 0.95rem; }
+
+/* ── Rechtstexte ──────────────────────────────────────────────────────── */
+
+.legal-text h2 { font-size: 1.15rem; }
+
+/* ── 404 ──────────────────────────────────────────────────────────────── */
+
+.fehlerseite { padding: 2rem 0; }
+
+/* ── Feedback-Widget ──────────────────────────────────────────────────── */
+
+.feedback-widget {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 50;
+  background: var(--color-secondary);
+  color: #ffffff;
+  border-radius: var(--radius);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+  max-width: calc(100vw - 2rem);
+}
+.feedback-widget summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 0.75rem 1.1rem;
+  font-weight: 700;
+  font-size: 1rem;
+}
+.feedback-widget summary::-webkit-details-marker { display: none; }
+.feedback-panel {
+  background: #ffffff;
+  color: var(--color-text);
+  padding: 1rem 1.1rem 1.1rem;
+  border-radius: 0 0 var(--radius) var(--radius);
+  max-width: 280px;
+}
+.feedback-panel p { margin-top: 0; font-size: 0.95rem; }
+
+/* ── Print: Feedback-Widget nicht drucken ────────────────────────────── */
+@media print {
+  .feedback-widget { display: none; }
+}
