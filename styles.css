@@ -333,6 +333,14 @@ li { margin: 0.4em 0; }
   font-size: 0.9rem;
   font-weight: 600;
 }
+/* Dezentes Datenqualitäts-Signal (Rang 1 — Wolfram-Feedback #1, 2026-07-22):
+   optisch von den Leistungs-Badges unterschieden (blauer statt grüner Ton),
+   aber bewusst kein Werbe-/Anzeigen-Look. */
+.badge--bestaetigt {
+  background: var(--color-accent-bg);
+  color: var(--color-primary-dark);
+  border: 1px solid var(--color-primary);
+}
 
 .einleitung { color: var(--color-text-muted); }
 .ratgeber-hinweis {
