@@ -460,3 +460,81 @@ li { margin: 0.4em 0; }
 @media print {
   .feedback-widget { display: none; }
 }
+
+/* ── Feedback-Formular (/feedback/, seit 23.07.2026) ──────────────────
+   Mobil-first: Besucher kommen ueberwiegend per Handy. Eingabefelder mit
+   16px Schriftgroesse, damit iOS beim Fokus nicht automatisch hineinzoomt. */
+.fb-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin: 1.5rem 0;
+}
+.fb-form label {
+  font-weight: 600;
+  margin-top: 0.75rem;
+}
+.fb-opt {
+  font-weight: 400;
+  color: var(--color-text-muted);
+}
+.fb-form input[type="text"],
+.fb-form input[type="email"],
+.fb-form select,
+.fb-form textarea {
+  width: 100%;
+  padding: 0.65rem 0.7rem;
+  font: inherit;
+  font-size: 16px;
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+}
+.fb-form textarea {
+  resize: vertical;
+  min-height: 8rem;
+}
+.fb-form input:focus-visible,
+.fb-form select:focus-visible,
+.fb-form textarea:focus-visible,
+.fb-form button:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+.fb-form .btn {
+  margin-top: 1.1rem;
+  align-self: flex-start;
+  cursor: pointer;
+  border: 0;
+}
+.fb-form .btn[disabled] {
+  opacity: 0.6;
+  cursor: default;
+}
+.fb-status {
+  margin: 0.6rem 0 0;
+  min-height: 1.2em;
+  color: var(--color-text-muted);
+}
+.fb-status.fb-fehler {
+  color: #9b2226;
+  font-weight: 600;
+}
+.fb-danke {
+  padding: 1rem;
+  background: var(--color-badge-bg);
+  color: var(--color-badge-text);
+  border-radius: 6px;
+  font-weight: 600;
+}
+/* Bot-Falle: fuer Menschen unsichtbar und nicht fokussierbar, fuer Bots im
+   Quelltext ein normales Feld. Bewusst NICHT display:none — manche Bots
+   ueberspringen so ausgeblendete Felder und liefen der Falle davon. */
+.fb-hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}

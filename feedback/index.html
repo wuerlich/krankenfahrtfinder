@@ -27,9 +27,99 @@
 <h1>Helfen Sie uns, besser zu werden</h1>
 <div class="content-narrow">
 <p>Was fehlt Ihnen? Welcher Eintrag stimmt nicht? Was sollen wir bauen?</p>
-<p><a class="btn" href="mailto:feedback@krankenfahrtfinder.de?subject=Verbesserungsvorschlag%20Krankenfahrtfinder">Feedback per E-Mail senden</a></p>
-<p class="melde-frist">Wir lesen jede Nachricht täglich und bauen die Seite danach weiter.</p>
+
+<form id="fb-form" class="fb-form" novalidate>
+  <label for="fb-art">Worum geht es?</label>
+  <select id="fb-art" name="art">
+    <option value="eintrag_falsch">Ein Eintrag ist falsch oder veraltet</option>
+    <option value="eintrag_fehlt">Ein Betrieb fehlt im Verzeichnis</option>
+    <option value="eintrag_loeschen">Ein Eintrag soll entfernt werden</option>
+    <option value="seite_problem">Problem mit der Website</option>
+    <option value="sonstiges" selected>Sonstiges</option>
+  </select>
+
+  <label for="fb-betrifft">Welcher Betrieb oder Ort? <span class="fb-opt">(optional)</span></label>
+  <input type="text" id="fb-betrifft" name="betrifft" maxlength="200"
+         placeholder="z.&nbsp;B. Taxi Meyer, Wildeshausen" autocomplete="off">
+
+  <label for="fb-nachricht">Ihre Nachricht</label>
+  <textarea id="fb-nachricht" name="nachricht" rows="6" maxlength="4000" required
+            placeholder="Beschreiben Sie kurz, was Ihnen aufgefallen ist."></textarea>
+
+  <label for="fb-kontakt">E-Mail für Rückfragen <span class="fb-opt">(optional)</span></label>
+  <input type="email" id="fb-kontakt" name="kontakt" maxlength="200"
+         placeholder="nur, wenn wir uns melden sollen" autocomplete="off">
+
+  <div class="fb-hp" aria-hidden="true">
+    <label for="fb-firma">Firma</label>
+    <input type="text" id="fb-firma" name="firma" tabindex="-1" autocomplete="off">
+  </div>
+
+  <button type="submit" class="btn" id="fb-submit">Rückmeldung senden</button>
+  <p class="fb-status" id="fb-status" role="status" aria-live="polite"></p>
+</form>
+
+<noscript>
+  <p>Für das Formular wird JavaScript benötigt. Sie erreichen uns auch direkt per E-Mail:</p>
+  <p><a class="btn" href="mailto:feedback@krankenfahrtfinder.de?subject=Verbesserungsvorschlag%20Krankenfahrtfinder">Feedback per E-Mail senden</a></p>
+</noscript>
+
+<p class="melde-frist">Wir lesen jede Nachricht täglich und bauen die Seite danach weiter.
+Lieber per E-Mail? <a href="mailto:feedback@krankenfahrtfinder.de?subject=Verbesserungsvorschlag%20Krankenfahrtfinder">Schreiben Sie uns direkt.</a></p>
 </div>
+
+<script>
+(function () {
+  var form = document.getElementById("fb-form");
+  if (!form) return;
+  var status = document.getElementById("fb-status");
+  var knopf = document.getElementById("fb-submit");
+  var ZIEL = "https://auftrag.citytaxi-live.com/verzeichnis-feedback";
+
+  form.addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    var nachricht = document.getElementById("fb-nachricht").value.trim();
+    if (nachricht.length < 5) {
+      status.textContent = "Bitte schreiben Sie uns kurz, worum es geht.";
+      status.className = "fb-status fb-fehler";
+      return;
+    }
+    knopf.disabled = true;
+    status.textContent = "Wird gesendet…";
+    status.className = "fb-status";
+
+    fetch(ZIEL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        nachricht: nachricht,
+        art: document.getElementById("fb-art").value,
+        betrifft: document.getElementById("fb-betrifft").value,
+        kontakt: document.getElementById("fb-kontakt").value,
+        firma: document.getElementById("fb-firma").value
+      })
+    })
+      .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
+      .then(function (res) {
+        if (res.ok && res.d && res.d.ok) {
+          form.innerHTML = '<p class="fb-danke">Vielen Dank! Ihre Rückmeldung ist angekommen.</p>';
+        } else {
+          status.textContent = (res.d && res.d.meldung) ? res.d.meldung
+            : "Das hat nicht geklappt. Bitte versuchen Sie es später noch einmal.";
+          status.className = "fb-status fb-fehler";
+          knopf.disabled = false;
+        }
+      })
+      .catch(function () {
+        // Netzwerk-/CORS-Fehler: Besucher nicht im Regen stehen lassen -> E-Mail-Weg zeigen.
+        status.innerHTML = 'Die Verbindung hat nicht geklappt. '
+          + 'Bitte schreiben Sie uns per <a href="mailto:feedback@krankenfahrtfinder.de?subject=Verbesserungsvorschlag%20Krankenfahrtfinder">E-Mail</a>.';
+        status.className = "fb-status fb-fehler";
+        knopf.disabled = false;
+      });
+  });
+})();
+</script>
 </div>
 </main>
 <footer class="site-footer">
@@ -46,6 +136,6 @@
     <p class="footer__org">HD City Taxi Oldenburg GmbH · Rudolf-Diesel-Str. 24-28, 26135 Oldenburg</p>
   </div>
 </footer>
-<a class="feedback-widget" href="../feedback/">💬 Feedback</a>
+
 </body>
 </html>
